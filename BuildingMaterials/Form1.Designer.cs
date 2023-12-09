@@ -39,8 +39,9 @@
             // password
             // 
             password.Font = new Font("Segoe UI", 14F);
-            password.Location = new Point(242, 288);
+            password.Location = new Point(321, 284);
             password.Name = "password";
+            password.PasswordChar = '*';
             password.Size = new Size(373, 39);
             password.TabIndex = 1;
             // 
@@ -48,7 +49,7 @@
             // 
             loginLabel.AutoSize = true;
             loginLabel.Font = new Font("Segoe UI", 14F);
-            loginLabel.Location = new Point(12, 227);
+            loginLabel.Location = new Point(91, 223);
             loginLabel.Name = "loginLabel";
             loginLabel.Size = new Size(224, 32);
             loginLabel.TabIndex = 2;
@@ -58,7 +59,7 @@
             // 
             passwordLabel.AutoSize = true;
             passwordLabel.Font = new Font("Segoe UI", 14F);
-            passwordLabel.Location = new Point(135, 291);
+            passwordLabel.Location = new Point(214, 287);
             passwordLabel.Name = "passwordLabel";
             passwordLabel.Size = new Size(101, 32);
             passwordLabel.TabIndex = 3;
@@ -89,8 +90,8 @@
             // 
             login.Font = new Font("Segoe UI", 14F);
             login.FormattingEnabled = true;
-            login.Items.AddRange(new object[] { "customer", "root" });
-            login.Location = new Point(242, 233);
+            login.Items.AddRange(new object[] { "customer", "manager" });
+            login.Location = new Point(321, 229);
             login.Name = "login";
             login.Size = new Size(373, 39);
             login.TabIndex = 6;
@@ -106,6 +107,7 @@
             Controls.Add(passwordLabel);
             Controls.Add(loginLabel);
             Controls.Add(password);
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Вход";
             Deactivate += Form1_Deactivate;

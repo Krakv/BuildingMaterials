@@ -19,19 +19,27 @@ namespace BuildingMaterials
         {
             if (SqlConnection.CheckForInternetConnection())
             {
-                if (login.Text == "root")
+                try
                 {
-                    SqlConnection conn = new SqlConnection("localhost", "building_materials", login.Text, password.Text);
-                    Form admin = new Admin(conn, this);
-                    admin.Show();
-                    this.Visible = false;
+                    if (login.Text == "manager")
+                    {
+                            SqlConnection conn = new SqlConnection("localhost", "building_materials", login.Text, password.Text);
+                            Form admin = new Admin(conn, this);
+                            admin.Show();
+                            this.Visible = false;
+                    }
+                    else if (login.Text == "customer")
+                    {
+                        SqlConnection conn = new SqlConnection("localhost", "building_materials", login.Text, password.Text);
+                        Customer customer = new Customer(conn, this);
+                        customer.Show();
+                        this.Visible = false;
+                    }
+
                 }
-                if (login.Text == "customer")
+                catch (Exception ex)
                 {
-                    SqlConnection conn = new SqlConnection("localhost", "building_materials", login.Text, password.Text);
-                    Customer customer = new Customer(conn, this);
-                    customer.Show();
-                    this.Visible = false;
+                    MessageBox.Show("Возникла ошибка\n" + ex.Message);
                 }
 
             }

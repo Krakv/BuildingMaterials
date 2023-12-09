@@ -18,12 +18,13 @@ namespace BuildingMaterials
         {
             string con = $"server={host};user={login};database={database};password={password};CharSet=utf8;";
             connection = new MySqlConnection(con);
+            connection.Open(); // открытие соединения 
         }
 
         public MySqlDataReader data(string sqlQuery) // передаем текст запроса
         {
 
-            connection.Open(); // открытие соединения 
+            
             MySqlCommand command = new MySqlCommand(sqlQuery, connection);
 
             reader = command.ExecuteReader(); // исполнение запроса и получение данных из БД

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,16 +24,16 @@ namespace BuildingMaterials
             this.owner = owner;
             this.connection = connection;
             string temp = "select good_available.good_id from good_available where good_available.store_id = 1";
-            reader = connection.data("select good.good_name, " +
-                "good.brc_code, " +
-                "good.Field_Of_Application, " +
-                "good.Packaging, " +
-                "good.Technical_Characteristics, " +
-                "good.Instructions_For_Use, " +
-                "good.Precautions, " +
-                "good.Storage_And_Transportation, " +
-                "good.Certificates, " +
-                "good.Manufacturer_information " +
+            reader = connection.data("select good.good_name AS \"Наименование товара\", " +
+                "good.brc_code AS \"Код КСР\", " +
+                "good.Field_Of_Application AS \"Область применения\", " +
+                "good.Packaging AS \"Упаковка\", " +
+                "good.Technical_Characteristics AS \"Технические характеристики\", " +
+                "good.Instructions_For_Use AS \"Инструкция по применению\", " +
+                "good.Precautions AS \"Предостережения\", " +
+                "good.Storage_And_Transportation AS \"Хранение и транспортировка\", " +
+                "good.Certificates AS \"Сертификаты\", " +
+                "good.Manufacturer_information AS \"Сведения о производителе\"" +
                 "from good, good_available where good.good_id = good_available.good_id AND good_available.store_id = 1");
             InitializeComponent();
             Reload();
@@ -41,42 +42,43 @@ namespace BuildingMaterials
 
         private void store1_Click(object sender, EventArgs e)
         {
-            reader = connection.data("select * from goods where good.store_id = 1");
+            reader = connection.data("select good.good_name AS \"Наименование товара\", " +
+                "good.brc_code AS \"Код КСР\", " +
+                "good.Field_Of_Application AS \"Область применения\", " +
+                "good.Packaging AS \"Упаковка\", " +
+                "good.Technical_Characteristics AS \"Технические характеристики\", " +
+                "good.Instructions_For_Use AS \"Инструкция по применению\", " +
+                "good.Precautions AS \"Предостережения\", " +
+                "good.Storage_And_Transportation AS \"Хранение и транспортировка\", " +
+                "good.Certificates AS \"Сертификаты\", " +
+                "good.Manufacturer_information AS \"Сведения о производителе\"" +
+                "from good, good_available where good.good_id = good_available.good_id AND good_available.store_id = 1");
         }
 
         public void Reload()
         {
             dataGridView1.Rows.Clear();
 
-            while (reader.Read()) // запись выгруженных данных в dataGridView 
+            for (int i = 0; i < reader.FieldCount; i++)
             {
-                dataGridView1.Rows.Add(reader.GetString("good_name").ToString(),
-                    reader.GetString("Field_Of_Application").ToString(),
-                    reader.GetString("Packaging").ToString(),
-                    reader.GetString("Technical_Characteristics").ToString(),
-                    reader.GetString("Instructions_For_Use").ToString(),
-                    reader.GetString("Precautions").ToString(),
-                    reader.GetString("Storage_And_Transportation").ToString(),
-                    reader.GetString("Certificates").ToString(),
-                    reader.GetString("Manufacturer_information").ToString()
-                    );
+                dataGridView1.Columns.Add(columnName: reader.GetName(i), headerText: reader.GetName(i));
             }
-        }
-
-        private void Customer_Deactivate(object sender, EventArgs e)
-        {
-            owner.ShowDialog();
-            owner.Focus();
-        }
-
-        private void Customer_Load(object sender, EventArgs e)
-        {
-
+            while (reader.Read())
+            {
+                string[] arr = new string[reader.FieldCount];
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    arr[i] = reader.GetString(reader.GetName(i)).ToString();
+                }
+                dataGridView1.Rows.Add(arr);
+            }
+            reader.Close();
         }
 
         private void Customer_FormClosed(object sender, FormClosedEventArgs e)
         {
-            owner.ShowDialog();
+            owner.Visible = true;
+            owner.Activate();
         }
     }
 }

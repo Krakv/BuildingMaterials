@@ -24,33 +24,44 @@ namespace BuildingMaterials
             Reload("good");
         }
 
-
         public void Reload(string name)
         {
             Program.InitializeTables(dataGridView1, name, connection);
         }
 
-
-
-
-        private void tableTB_TextChanged(object sender, EventArgs e)
+        private void goodTableMenu_Click(object sender, EventArgs e)
         {
-
+            Reload("good");
         }
 
+        private void goodAvailableTableMenu_Click(object sender, EventArgs e)
+        {
+            Reload("good_available");
+        }
+
+        private void orderTableMenu_Click(object sender, EventArgs e)
+        {
+            Reload("order_t");
+        }
+
+        private void workerTableMenu_Click(object sender, EventArgs e)
+        {
+            Reload("worker");
+        }
+
+        private void storeTableMenu_Click(object sender, EventArgs e)
+        {
+            Reload("store");
+        }
+
+        private void goodSelledTableMenu_Click(object sender, EventArgs e)
+        {
+            Reload("good_selled");
+        }
         private void Admin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            owner.ShowDialog();
-        }
-
-        private void tableTB_Leave(object sender, EventArgs e)
-        {
-             
-        }
-
-        private void tableTB_Validated(object sender, EventArgs e)
-        {
-            
+            owner.Visible = true;
+            owner.Activate();
         }
     }
 }

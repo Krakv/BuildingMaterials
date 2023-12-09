@@ -31,7 +31,12 @@
             dataGridView1 = new DataGridView();
             menuStrip1 = new MenuStrip();
             таблицаToolStripMenuItem = new ToolStripMenuItem();
-            tableTB = new ToolStripTextBox();
+            goodTableMenu = new ToolStripMenuItem();
+            goodAvailableTableMenu = new ToolStripMenuItem();
+            orderTableMenu = new ToolStripMenuItem();
+            workerTableMenu = new ToolStripMenuItem();
+            storeTableMenu = new ToolStripMenuItem();
+            goodSelledTableMenu = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -58,19 +63,52 @@
             // 
             // таблицаToolStripMenuItem
             // 
-            таблицаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tableTB });
+            таблицаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { goodTableMenu, goodAvailableTableMenu, orderTableMenu, workerTableMenu, storeTableMenu, goodSelledTableMenu });
             таблицаToolStripMenuItem.Name = "таблицаToolStripMenuItem";
             таблицаToolStripMenuItem.Size = new Size(82, 24);
             таблицаToolStripMenuItem.Text = "Таблица";
             // 
-            // tableTB
+            // goodTableMenu
             // 
-            tableTB.Name = "tableTB";
-            tableTB.Size = new Size(100, 27);
-            tableTB.Text = "good";
-            tableTB.Leave += tableTB_Leave;
-            tableTB.Validated += tableTB_Validated;
-            tableTB.TextChanged += tableTB_TextChanged;
+            goodTableMenu.Name = "goodTableMenu";
+            goodTableMenu.Size = new Size(225, 26);
+            goodTableMenu.Text = "Товары";
+            goodTableMenu.Click += goodTableMenu_Click;
+            // 
+            // goodAvailableTableMenu
+            // 
+            goodAvailableTableMenu.Name = "goodAvailableTableMenu";
+            goodAvailableTableMenu.Size = new Size(225, 26);
+            goodAvailableTableMenu.Text = "Товары в наличии";
+            goodAvailableTableMenu.Click += goodAvailableTableMenu_Click;
+            // 
+            // orderTableMenu
+            // 
+            orderTableMenu.Name = "orderTableMenu";
+            orderTableMenu.Size = new Size(225, 26);
+            orderTableMenu.Text = "Заказы";
+            orderTableMenu.Click += orderTableMenu_Click;
+            // 
+            // workerTableMenu
+            // 
+            workerTableMenu.Name = "workerTableMenu";
+            workerTableMenu.Size = new Size(225, 26);
+            workerTableMenu.Text = "Сотрудники";
+            workerTableMenu.Click += workerTableMenu_Click;
+            // 
+            // storeTableMenu
+            // 
+            storeTableMenu.Name = "storeTableMenu";
+            storeTableMenu.Size = new Size(225, 26);
+            storeTableMenu.Text = "Магазины";
+            storeTableMenu.Click += storeTableMenu_Click;
+            // 
+            // goodSelledTableMenu
+            // 
+            goodSelledTableMenu.Name = "goodSelledTableMenu";
+            goodSelledTableMenu.Size = new Size(225, 26);
+            goodSelledTableMenu.Text = "Купленные товары";
+            goodSelledTableMenu.Click += goodSelledTableMenu_Click;
             // 
             // Admin
             // 
@@ -95,6 +133,11 @@
         private DataGridView dataGridView1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem таблицаToolStripMenuItem;
-        private ToolStripTextBox tableTB;
+        private ToolStripMenuItem goodTableMenu;
+        private ToolStripMenuItem goodAvailableTableMenu;
+        private ToolStripMenuItem orderTableMenu;
+        private ToolStripMenuItem workerTableMenu;
+        private ToolStripMenuItem storeTableMenu;
+        private ToolStripMenuItem goodSelledTableMenu;
     }
 }
