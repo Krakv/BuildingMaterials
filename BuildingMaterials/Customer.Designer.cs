@@ -174,6 +174,7 @@
             Name = "Customer";
             Text = "Строительные материалы";
             Deactivate += Customer_Deactivate;
+            FormClosed += Customer_FormClosed;
             Load += Customer_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

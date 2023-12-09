@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,22 +14,43 @@ namespace BuildingMaterials
     public partial class Admin : Form
     {
         Form1 owner;
-        
-        public Admin(Form1 owner)
+        SqlConnection connection;
+
+        public Admin(SqlConnection connection, Form1 owner)
         {
+            this.connection = connection;
             this.owner = owner;
             InitializeComponent();
+            Reload("good");
         }
 
-        private void Admin_Load(object sender, EventArgs e)
+
+        public void Reload(string name)
+        {
+            Program.InitializeTables(dataGridView1, name, connection);
+        }
+
+
+
+
+        private void tableTB_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void Admin_Deactivate(object sender, EventArgs e)
+        private void Admin_FormClosed(object sender, FormClosedEventArgs e)
         {
             owner.ShowDialog();
-            owner.Focus();
+        }
+
+        private void tableTB_Leave(object sender, EventArgs e)
+        {
+             
+        }
+
+        private void tableTB_Validated(object sender, EventArgs e)
+        {
+            
         }
     }
 }

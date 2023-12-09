@@ -28,21 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            login = new TextBox();
             password = new TextBox();
             loginLabel = new Label();
             passwordLabel = new Label();
             mainLabel = new Label();
             enterBtn = new Button();
+            login = new ComboBox();
             SuspendLayout();
-            // 
-            // login
-            // 
-            login.Font = new Font("Segoe UI", 16F);
-            login.Location = new Point(242, 219);
-            login.Name = "login";
-            login.Size = new Size(373, 43);
-            login.TabIndex = 0;
             // 
             // password
             // 
@@ -93,17 +85,27 @@
             enterBtn.UseVisualStyleBackColor = true;
             enterBtn.Click += enterBtn_Click;
             // 
+            // login
+            // 
+            login.Font = new Font("Segoe UI", 14F);
+            login.FormattingEnabled = true;
+            login.Items.AddRange(new object[] { "customer", "root" });
+            login.Location = new Point(242, 233);
+            login.Name = "login";
+            login.Size = new Size(373, 39);
+            login.TabIndex = 6;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(login);
             Controls.Add(enterBtn);
             Controls.Add(mainLabel);
             Controls.Add(passwordLabel);
             Controls.Add(loginLabel);
             Controls.Add(password);
-            Controls.Add(login);
             Name = "Form1";
             Text = "Вход";
             Deactivate += Form1_Deactivate;
@@ -113,11 +115,12 @@
 
         #endregion
 
-        private TextBox login;
+        private TextBox login1;
         private TextBox password;
         private Label loginLabel;
         private Label passwordLabel;
         private Label mainLabel;
         private Button enterBtn;
+        private ComboBox login;
     }
 }

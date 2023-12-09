@@ -31,6 +31,7 @@
             dataGridView1 = new DataGridView();
             menuStrip1 = new MenuStrip();
             таблицаToolStripMenuItem = new ToolStripMenuItem();
+            tableTB = new ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -42,7 +43,7 @@
             dataGridView1.Location = new Point(12, 31);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(776, 384);
+            dataGridView1.Size = new Size(776, 372);
             dataGridView1.TabIndex = 0;
             // 
             // menuStrip1
@@ -57,9 +58,19 @@
             // 
             // таблицаToolStripMenuItem
             // 
+            таблицаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tableTB });
             таблицаToolStripMenuItem.Name = "таблицаToolStripMenuItem";
             таблицаToolStripMenuItem.Size = new Size(82, 24);
             таблицаToolStripMenuItem.Text = "Таблица";
+            // 
+            // tableTB
+            // 
+            tableTB.Name = "tableTB";
+            tableTB.Size = new Size(100, 27);
+            tableTB.Text = "good";
+            tableTB.Leave += tableTB_Leave;
+            tableTB.Validated += tableTB_Validated;
+            tableTB.TextChanged += tableTB_TextChanged;
             // 
             // Admin
             // 
@@ -71,8 +82,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Admin";
             Text = "Строительные материалы : администратор";
-            Deactivate += Admin_Deactivate;
-            Load += Admin_Load;
+            FormClosed += Admin_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -85,5 +95,6 @@
         private DataGridView dataGridView1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem таблицаToolStripMenuItem;
+        private ToolStripTextBox tableTB;
     }
 }

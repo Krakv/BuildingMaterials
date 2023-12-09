@@ -24,6 +24,7 @@ namespace BuildingMaterials
             this.connection = connection;
             string temp = "select good_available.good_id from good_available where good_available.store_id = 1";
             reader = connection.data("select good.good_name, " +
+                "good.brc_code, " +
                 "good.Field_Of_Application, " +
                 "good.Packaging, " +
                 "good.Technical_Characteristics, " +
@@ -71,6 +72,11 @@ namespace BuildingMaterials
         private void Customer_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Customer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            owner.ShowDialog();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace BuildingMaterials
                 if (login.Text == "root")
                 {
                     SqlConnection conn = new SqlConnection("localhost", "building_materials", login.Text, password.Text);
-                    Form admin = new Admin(this);
+                    Form admin = new Admin(conn, this);
                     admin.Show();
                     this.Visible = false;
                 }
@@ -45,5 +45,6 @@ namespace BuildingMaterials
         {
 
         }
+
     }
 }
