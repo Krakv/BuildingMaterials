@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using System.Net;
+using System.Windows.Forms;
 
 namespace BuildingMaterials
 {
@@ -19,6 +20,18 @@ namespace BuildingMaterials
             MySqlDataReader reader = null;
             table.Rows.Clear();
             table.Columns.Clear();
+            DataGridViewComboBoxColumn combobox = new DataGridViewComboBoxColumn();
+            if (name == "worker")
+            {
+                MySqlDataReader storesReader = con.data("select store.real_address from store");
+                while (storesReader.Read())
+                {
+                    combobox.Items.Add(storesReader.GetString("real_address"));
+                }
+                combobox.HeaderText = "Физический адрес";
+                combobox.Name = "Физический адрес";
+                storesReader.Close();
+            }
             if (name == "good")
             {
                 reader = con.data($"SELECT good.good_name AS \"Наименование товара\",\r\ngood.brc_code AS \"Код КСР\",\r\ngood.Field_Of_Application AS \"Область применения\", \r\ngood.Packaging AS \"Упаковка\", \r\ngood.Technical_Characteristics AS \"Технические характеристики\",\r\ngood.Instructions_For_Use AS \"Инструкция по применению\", \r\ngood.Precautions AS \"Предостережения\", \r\ngood.Storage_And_Transportation AS \"Хранение и транспортировка\",\r\ngood.Certificates AS \"Сертификаты\", \r\ngood.Manufacturer_information AS \"Сведения о производителе\"\r\nFROM good;");
@@ -31,7 +44,7 @@ namespace BuildingMaterials
             }
             else if (name == "worker")
             {
-                reader = con.data($"SELECT worker.Worker_Second_Name AS \"Фамилия\", \r\nworker.Worker_First_Name AS \"Имя\", \r\nCOUNT(good_selled.GOOD_SELLED_ID) AS \"Количество заказов\", \r\nSUM(good_selled.Good_Count * good_selled.Good_Cost) AS \"Сумма заказов\"\r\nFROM worker, order_t, good_selled\r\nWHERE worker.WORKER_ID = order_t.WORKER_ID \r\nAND order_t.ORDER_ID = good_selled.order_id\r\nGROUP BY order_t.WORKER_ID;");
+                reader = con.data($"SELECT worker.Worker_Second_Name AS \"Фамилия\", \r\nworker.Worker_First_Name AS \"Имя\", \r\nworker.Worker_Father_Name AS \"Отчество\", \r\nworker.Worker_Post AS \"Должность\",\r\nworker.Phone_Number AS \"Номер телефона\",\r\nstore.real_address AS \"Физический адрес\"\r\nfrom worker, worker_store, store\r\nWHERE worker.worker_id = worker_store.worker_id\r\nAND worker_store.store_id = store.store_id;");
                 
             }
             else if (name == "good_selled")
@@ -55,6 +68,12 @@ namespace BuildingMaterials
                 {
                     table.Columns.Add(columnName: reader.GetName(i), headerText: reader.GetName(i));
                 }
+                if (name == "worker")
+                {
+                    table.Columns.Remove("Физический адрес");
+                    table.Columns.Add(combobox);
+                }
+
                 while (reader.Read())
                 {
                     string[] arr = new string[reader.FieldCount];
@@ -65,6 +84,8 @@ namespace BuildingMaterials
                     table.Rows.Add(arr);
                 }
                 reader.Close();
+
+                
             }
         }
     }

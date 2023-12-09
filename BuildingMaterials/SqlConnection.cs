@@ -23,8 +23,6 @@ namespace BuildingMaterials
 
         public MySqlDataReader data(string sqlQuery) // передаем текст запроса
         {
-
-            
             MySqlCommand command = new MySqlCommand(sqlQuery, connection);
 
             reader = command.ExecuteReader(); // исполнение запроса и получение данных из БД
