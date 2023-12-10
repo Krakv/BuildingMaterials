@@ -95,6 +95,13 @@
             login.Name = "login";
             login.Size = new Size(373, 39);
             login.TabIndex = 6;
+            login.SelectedIndexChanged += login_SelectedIndexChanged;
+            login.SelectionChangeCommitted += login_SelectionChangeCommitted;
+            login.TextUpdate += login_TextUpdate;
+            login.DropDownClosed += login_DropDownClosed;
+            login.MouseLeave += login_MouseLeave;
+            login.Validating += login_Validating;
+            login.Validated += login_Validated;
             // 
             // Form1
             // 
@@ -111,6 +118,7 @@
             Name = "Form1";
             Text = "Вход";
             Deactivate += Form1_Deactivate;
+            VisibleChanged += Form1_VisibleChanged;
             ResumeLayout(false);
             PerformLayout();
         }
