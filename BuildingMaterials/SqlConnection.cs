@@ -30,6 +30,11 @@ namespace BuildingMaterials
             return reader;
         }
 
+        public void query(string sqlQuery) // передаем текст запроса
+        {
+            MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+        }
+
         public static bool CheckForInternetConnection()
         {
             try

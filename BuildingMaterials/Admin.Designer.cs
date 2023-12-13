@@ -37,18 +37,26 @@
             workerTableMenu = new ToolStripMenuItem();
             storeTableMenu = new ToolStripMenuItem();
             goodSelledTableMenu = new ToolStripMenuItem();
+            Add = new Button();
+            Delete = new Button();
+            Edit = new Button();
+            update = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 31);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(776, 372);
+            dataGridView1.Size = new Size(1597, 604);
             dataGridView1.TabIndex = 0;
             // 
             // menuStrip1
@@ -57,7 +65,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { таблицаToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 28);
+            menuStrip1.Size = new Size(1621, 28);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -110,11 +118,55 @@
             goodSelledTableMenu.Text = "Купленные товары";
             goodSelledTableMenu.Click += goodSelledTableMenu_Click;
             // 
+            // Add
+            // 
+            Add.Location = new Point(12, 641);
+            Add.Name = "Add";
+            Add.Size = new Size(386, 63);
+            Add.TabIndex = 2;
+            Add.Text = "Добавить";
+            Add.UseVisualStyleBackColor = true;
+            Add.Click += Add_Click;
+            // 
+            // Delete
+            // 
+            Delete.Location = new Point(404, 641);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(386, 63);
+            Delete.TabIndex = 3;
+            Delete.Text = "Удалить";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
+            // 
+            // Edit
+            // 
+            Edit.Location = new Point(796, 641);
+            Edit.Name = "Edit";
+            Edit.Size = new Size(386, 63);
+            Edit.TabIndex = 4;
+            Edit.Text = "Редактировать";
+            Edit.UseVisualStyleBackColor = true;
+            Edit.Click += Edit_Click;
+            // 
+            // update
+            // 
+            update.Location = new Point(1188, 641);
+            update.Name = "update";
+            update.Size = new Size(421, 63);
+            update.TabIndex = 5;
+            update.Text = "Обновить";
+            update.UseVisualStyleBackColor = true;
+            update.Click += update_Click;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1621, 716);
+            Controls.Add(update);
+            Controls.Add(Edit);
+            Controls.Add(Delete);
+            Controls.Add(Add);
             Controls.Add(dataGridView1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -139,5 +191,9 @@
         private ToolStripMenuItem workerTableMenu;
         private ToolStripMenuItem storeTableMenu;
         private ToolStripMenuItem goodSelledTableMenu;
+        private Button Add;
+        private Button Delete;
+        private Button Edit;
+        private Button update;
     }
 }
