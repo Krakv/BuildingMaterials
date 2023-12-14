@@ -239,10 +239,10 @@ namespace BuildingMaterials
                         reader.Read(); arr[1] = reader.GetString(0); reader.Close();
                         reader = connection.data($"select store.store_id from store where store.real_address = \"{arr[2]}\"");
                         reader.Read(); arr[2] = reader.GetString(0); reader.Close();
-                        values = $"GOOD_ID = {arr[1]}, ORDER_T_ID = {arr[0]}, STORE_ID = {arr[2]}, Good_Count = {arr[3]}, Good_Cost = {arr[4]} where {current}_id = {editId}";
+                        values = $"GOOD_ID = {arr[1]}, ORDER_T_ID = {arr[0]}, STORE_ID = {arr[2]}, Good_Count = {arr[3]}, Good_Cost = {arr[4]}";
                     }
 
-                    reader = connection.data($"UPDATE {current} SET {values}");
+                    reader = connection.data($"UPDATE {current} SET {values} where {current}_id = {editId}");
                     reader.Read();
                     reader.Close();
                     //if (current == "worker" && arr[5] != "NULL")
